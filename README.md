@@ -196,42 +196,31 @@ https://github.com/masakielastic/zig-hpack
 
 The first planned release tag is `v0.1.0`.
 
-For reproducible builds, use the tagged release tarball:
+You can add the dependency with Zig tooling:
+
+```sh
+zig fetch --save git+https://github.com/masakielastic/zig-hpack
+```
+
+That updates `build.zig.zon`. In the common case, Zig adds a dependency entry keyed by the package name:
 
 ```zig
 .dependencies = .{
     .zig_hpack = .{
-        .url = "https://github.com/masakielastic/zig-hpack/archive/refs/tags/v0.1.0.tar.gz",
-        .hash = "<fill-in-with-zig-fetch-output>",
+        .url = "git+https://github.com/masakielastic/zig-hpack",
+        .hash = "<resolved-by-zig>",
     },
 },
 ```
 
-If you explicitly want to follow the moving `main` branch instead, use:
+If you want a versioned dependency, update the saved entry to the `v0.1.0` release reference after fetching, or fetch a version-specific Git reference once you settle on that workflow.
 
-```zig
-.dependencies = .{
-    .zig_hpack = .{
-        .url = "https://github.com/masakielastic/zig-hpack/archive/refs/heads/main.tar.gz",
-        .hash = "<fill-in-with-zig-fetch-output>",
-    },
-},
-```
-
-The consuming `build.zig` stays the same:
+After that, the consuming `build.zig` stays the same:
 
 ```zig
 const dep = b.dependency("zig_hpack", .{});
 exe.root_module.addImport("hpack", dep.module("hpack"));
 ```
-
-You can also add the dependency with Zig tooling:
-
-```sh
-zig fetch --save https://github.com/masakielastic/zig-hpack/archive/refs/tags/v0.1.0.tar.gz
-```
-
-That command updates `build.zig.zon` with the correct dependency entry and content hash.
 
 ### Slice-Based Encoding
 
