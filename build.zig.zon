@@ -1,0 +1,16 @@
+.{
+    .name = .zig_hpack,
+    .version = "0.1.0",
+    .fingerprint = 0xe031938fccfcc3dc, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.2",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "LICENSE",
+        "README.md",
+        "examples",
+        "src",
+        "DEVELOPMENT_PLAN.md",
+    },
+}

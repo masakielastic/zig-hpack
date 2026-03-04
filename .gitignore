@@ -1,0 +1,4 @@
+/.zig-cache/
+/zig-out/
+/examples/consumer-app/.zig-cache/
+/examples/consumer-app/zig-out/
